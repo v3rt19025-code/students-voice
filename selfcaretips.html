@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>The Student's Voice | Self-Care Tips</title>
+  <style>
+    body {
+      padding-top: 15vh;
+      background-color: rgb(182, 182, 182);
+    }
+    /* Button style applied to all buttons */
+    /* Ribbon container */
+    .ribbon {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 15vh;
+      background: linear-gradient(to bottom, #007bff, #00c853);
+      z-index: 1000;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 10px;
+      transition: all 0.3s ease;
+    }
+    .ribbon:hover {
+      box-shadow: 0 6px 16px rgba(0, 0, 0, 0.7);
+    }
+
+    /* Text styles */
+    .ribbon-title {
+      color: white;
+      font-size: calc(3vh + 20px);
+      position: absolute;
+      top: 25%;
+      left: 50%;
+      width: 100%;
+      transform: translate(-50%, -50%);
+      margin: 0;
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+    }
+
+    .img-iblogo {
+      position: absolute;
+      top: 50%;
+      right: 92%;
+      width: 5%;
+      transform: translateY(-50%);
+      background: linear-gradient(to bottom, #007bff, #00c853);
+      z-index: 1001;
+      cursor: pointer;
+      pointer-events: auto;
+      box-shadow: 0 6px 16px rgba(0, 0, 0, 0.7);
+      transition: all 0.1s ease;
+      filter: brightness(0.8);
+    }
+    .img-iblogo:hover{  
+      box-shadow: 0 6px 16px rgba(255, 255, 255, 0.25);
+      filter: brightness(1.1);
+    }
+    .img-issalogo {
+      background: linear-gradient(to bottom, #007bff, #00c853);
+      position: absolute;
+      top: 50%;
+      left: 92%;
+      width: 5%;
+      transform: translateY(-50%);
+      background: radial-gradient(circle at center, #000000, transparent 10%) 1;
+      z-index: 1001;
+      cursor: pointer;
+      pointer-events: auto;
+      box-shadow: 0 6px 16px rgba(0, 0, 0, 0.7);
+      transition: all 0.1s ease;
+      filter: brightness(0.8);
+    }
+    .img-issalogo:hover{  
+      box-shadow: 0 6px 16px rgba(255, 255, 255, 0.25);
+      filter: brightness(1.1);
+    }
+
+    .ribbon-subtitle {
+      color: white;
+      font-size: 2vh;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 100%;
+      transform: translate(-50%, -50%);
+      margin: 0;
+      text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+    }
+
+    .separator {
+      background: linear-gradient(to right, transparent, white, transparent);
+      height: 1px;
+      position: absolute;
+      top: calc(45% + 35px);
+      left: 50%;
+      transform: translateX(-50%);
+      width: 80%;
+    }
+    .scrollable-txt {
+      padding-top: 15vh;
+      overflow-y: auto;
+      height: calc(100vh - 15vh);
+    }
+    .regular-txt {
+      position: fixed;
+      top: 20vh;
+      left: 50%;
+      transform: translateX(-50%);
+      background: white;
+      padding: 10px;      border: 2px solid;
+      border-image: radial-gradient(circle at center, #000000, transparent 100%) 1;
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+      text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+      overflow-y: auto;
+      text-align: center;
+      width: 80%;
+      font-size: calc(1.5vh + 5px);
+    }
+    .regular-txt h2 {
+      margin-top: 20px;
+      margin-bottom: 10px;
+      font-size: calc(1.5vh + 24px);
+    }
+    .regular-txt p {
+      margin-bottom: 16px;
+      line-height: 1.5;
+      font-size: calc(1vh + 16px);
+    }
+    .button-container {
+      display: flex;
+      gap: 15px;
+      position: absolute;
+      bottom: 10px;
+    }
+    .fade-in-anim-image {
+      opacity: 0;
+      animation: fadeUpImage 0.8s ease-out forwards;
+    }
+    @keyframes fadeUpImage {
+      from {
+        opacity: 0;
+        transform: translateY(40px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(20px);
+      }
+    }
+    .fade-in-anim {
+      opacity: 0;
+      animation: fadeUp 0.8s ease-out forwards;
+    }
+    @keyframes fadeUp {
+      from {
+        opacity: 0;
+        transform: translateY(calc(-50% + 20px));
+      }
+      to {
+        opacity: 1;
+        transform:translateY(-50%);
+      }
+    }
+    .fade-in-opacity {
+      opacity: 0;
+      animation: fadeIn 0.8s ease-out 0.5s forwards;
+    }
+    @keyframes fadeIn {
+      to {
+        opacity: 1;
+      }
+    }
+    .image-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr); /* default 3 columns */
+      gap: 20px;
+      padding: 20px;
+      justify-items: center;
+    }   
+/* On smaller screens, switch to 2 columns */
+  @media (max-width: 1080px) {
+    .image-grid {
+      grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+/* Optional: on very small phones, 1 column */
+  @media (max-width: 480px) {
+    .image-grid {
+    grid-template-columns: 1fr;
+      }
+    }
+
+    .image-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+    .fade-in.delay-1 { animation-delay: 0.2s; }
+    .fade-in.delay-2 { animation-delay: 0.4s; }
+    .fade-in.delay-3 { animation-delay: 0.6s; }
+    .fade-in.delay-4 { animation-delay: 0.8s; }
+    .fade-in.delay-5 { animation-delay: 1.0s; }
+    .fade-in.delay-6 { animation-delay: 1.2s; }
+    .circle-img {
+      margin-bottom: 20px;
+      width: calc(18vh + 70px);
+      height: calc(18vh + 70px);
+      border-radius: 50%;
+      object-fit: cover;
+      border: 2px solid #000000;
+      box-shadow: 0 32px 64px rgba(0, 0, 0, 0.5);
+      transition: transform 0.1s ease, filter 0.1s ease; /* add smooth animation */
+      filter: brightness(0.8);
+    }
+/* Hover effect: move up and brighten */
+    .circle-img:hover {
+      filter: brightness(1.1);
+      cursor: pointer;
+      box-shadow: 0 32px 64px rgba(255, 255, 255, 0.7);
+    }
+    .text-box {
+      background: white;
+      padding: 10px;
+      border: 2px solid;
+      border-image: radial-gradient(circle at center, #000000, transparent 100%) 1;
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+      text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+      text-align: center;
+      width: calc(18vh + 70px);
+      height: auto;
+      margin-top: 30px;
+      font-size: calc(0.8vh + 8px);
+      margin-left: 5px;
+    }
+    .survey-dropdown-div {
+      display:none;
+      position:absolute;
+      top:100%;
+      left:0;
+      background:white;
+      border:2px solid #000000;
+      border-image: radial-gradient(circle at center, #000000, transparent 100%) 1;
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+      padding:10px; 
+      z-index:1001;
+      opacity: 0;
+      transition: opacity 0.2s ease-out;
+    }
+    .button {
+      background: rgba(255, 255, 255, 0);
+      color: white;
+      border: 1px solid rgba(255, 255, 255, 0);
+      padding: 5px 10px;
+      border-radius: 6px;
+      font-size: calc(1.0vh + 5px);
+      cursor: pointer;
+      transition: all 0.1s ease;
+      text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+    }
+    .button:hover {
+      background: rgba(0,0,0,0.2);
+    }
+    .button2 {
+      background: transparent;
+      color: rgb(0, 0, 0);
+      border: none;
+      padding: 5px 10px;
+      border-radius: 6px;
+      font-size: 1.5vh;
+      cursor: pointer;
+      transition: all 0.1s ease;
+      text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+    }
+    .button2:hover {
+      background: rgba(0, 0, 0, 0.1);
+    }
+  </style>
+</head>
+<body>
+  <div class="ribbon">
+    <a href="https://www.ibo.org/" target="_blank" rel="noopener noreferrer">
+      <img src="https://isa.nis.edu.kz/assets/img/ib-world-school-logo-2-colour.png" alt="IB Logo" class="img-iblogo">
+    </a>
+    <a href="https://isa.nis.edu.kz/" target="_blank" rel="noopener noreferrer">
+      <img src="https://isa.nis.edu.kz/assets/img/alpha.png" alt="ISA Logo" class="img-issalogo">
+    </a>
+    <p class="ribbon-title">THE STUDENT'S VOICE</p>
+    <p class="ribbon-subtitle">A Mental Health Awareness Project</p>
+    <div class="separator"></div>
+    <div class="button-container">
+      <button class="button fade-up delay-1" onclick="redirect_home()">Home</button>
+      <button class="button" onclick="redirect_aboutus()">About us</button>
+      <button style="text-decoration: underline;" class="button" onclick="redirect_selfcaretips()">Self-Care tips</button>
+      <button class="button" onclick="redirect_resources()">Resources</button>
+      <button class="button" onclick="redirect_surveyresults()">Survey Results</button>
+      <div style="position:relative; display:inline-block;">
+        <button class="button" onclick="showSurveyDropdown()">Suggestions↗</button>
+        <div id="survey-dropdown" class="survey-dropdown-div">
+          <button class="button2" onclick="redirectToSurvey('ru')">Russian Survey↗</button>
+          <button class="button2" onclick="redirectToSurvey('en')">English Survey↗</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="image-grid fade-in-images">
+    <div class="image-item">
+      <img src="https://mentalhealthcenterkids.com/cdn/shop/articles/a_young_student_experiencing_academic_pressure_1024x1024.jpg?v=1748417228" class="circle-img fade-in delay-1 fade-in-anim-image" onclick="redirect_selfcaretips_stress()">
+      <p class="text-box">Stress and Academic Pressure</p>
+    </div>
+    <div class="image-item">
+      <img src="https://assets.mainlinetoday.com/2023/12/AdobeStock_228124585-scaled-1-1068x712.jpeg" class="circle-img fade-in delay-2 fade-in-anim-image">
+      <p class="text-box">Anxiety and Overthinking</p>
+    </div>
+    <div class="image-item">
+      <img src="https://www.bu.edu/files/2022/04/feat-crop-iStock-1358804204.jpg" class="circle-img fade-in delay-3 fade-in-anim-image">
+      <p class="text-box">Depression and Emotional Well-Being</p>
+    </div>
+    <div class="image-item">
+      <img src="https://www.mghclaycenter.org/assets/lonely-boy-mirror.jpg" class="circle-img fade-in delay-4 fade-in-anim-image">
+      <p class="text-box">Self-Esteem and Self-Image</p>
+    </div>
+    <div class="image-item">
+      <img src="https://cdn.psychologytoday.com/sites/default/files/styles/image-article_inline_full_caption/public/field_blog_entry_images/2022-08/istock-1082324798.jpg?itok=C-qAcsm8" class="circle-img fade-in delay-5 fade-in-anim-image">
+      <p class="text-box">Burnout and Mental Fatigue</p>
+    </div>
+    <div class="image-item">
+      <img src="https://as2.ftcdn.net/jpg/04/69/37/29/1000_F_469372978_nilM8KTKrnasJ1t8deEmd0qpSqgSNrl5.jpg" class="circle-img fade-in delay-6 fade-in-anim-image">
+      <p class="text-box">Seeking Help and Support Systems</p>
+    </div>
+  </div>
+
+  <script>
+    function redirect_home() {
+      window.location.href = "home.html";
+    }
+    function redirect_survey() {
+      window.location.href = "survey.html";
+    }
+    function redirect_aboutus() {
+      window.location.href = "aboutus.html";
+    }
+    function redirect_suggestions() {
+      window.location.href = "suggestions.html";
+    }
+    function redirect_selfcaretips() {
+      window.location.href = "selfcaretips.html";
+    }
+    function redirect_selfcaretips_stress() {
+      window.location.href = "selfcaretips_stress.html";
+    }
+    function redirect_resources() {
+      window.location.href = "resources.html";
+    }
+    function redirect_surveyresults() {
+      window.location.href = "surveyresults.html";
+    }
+    function redirect_ib() {
+      window.location.href = "https://www.ibo.org/";
+    }
+    function redirect_issa() {
+      window.location.href = "https://isa.nis.edu.kz/";
+    }
+    function showSurveyDropdown() {
+      var dropdown = document.getElementById('survey-dropdown');
+      if (dropdown.style.display === 'none' || dropdown.style.display === '') {
+        dropdown.style.display = 'block';
+        setTimeout(() => dropdown.style.opacity = '1', 10);
+      } else {
+        dropdown.style.opacity = '0';
+        setTimeout(() => dropdown.style.display = 'none', 200);
+      }
+    }
+    function redirectToSurvey(lang) {
+      if (lang === 'ru') {
+        window.location.href = 'https://forms.gle/7qRnzAdphJXBsfra9';
+      }
+      else if (lang === 'en') {
+        window.location.href = 'https://forms.gle/1szb2MY4xrDCpdyS6';
+      }
+    }
+  </script>
+</body>
+</html>
